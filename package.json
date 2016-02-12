@@ -1,0 +1,15 @@
+{
+  "name": "fhws-grades-push",
+  "version": "0.1.0",
+  "description": "Sends a Pushover notification when someone changed your grades in FHWS Studentenportal…",
+  "main": "app.js",
+  "author": "Sebastian Pekarek <mail@sebbo.net>",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^1.5.2",
+    "cheerio": "^0.20.0",
+    "node-pushover-client": "^1.4.0",
+    "request": "^2.69.0",
+    "underscore": "^1.8.3"
+  }
+}
