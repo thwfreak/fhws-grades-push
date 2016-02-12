@@ -50,3 +50,5 @@ FHWS_PASSWORD="*********" \
 PUSHOVER_TOKEN="*********" \
 PUSHOVER_USER="*********" node app
 ```
+
+![Such wow, much awesome](https://i.imgur.com/rSzk8wQ.png)
