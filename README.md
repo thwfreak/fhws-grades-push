@@ -7,6 +7,8 @@ Small script no get notified when there're new grades available on the
 ugly HTML scarping and there's almost no error handling, deal with it. 
 Very untested. Such wow.
 
+![Such wow, much awesome](https://i.imgur.com/rSzk8wQ.png)
+
 ### Installation
 
 You'll need [node.js](https://nodejs.org/en/) to run this.
