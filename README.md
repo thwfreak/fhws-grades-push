@@ -17,6 +17,8 @@ cd ./fhws-grades-push
 npm install
 ```
 
+I use crontab to run this script regularly.
+
 ### Configuration
 
 Use environment variables to set login credentials and pushover tokens:
