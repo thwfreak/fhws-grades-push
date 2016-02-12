@@ -4,6 +4,10 @@
   "description": "Sends a Pushover notification when someone changed your grades in FHWS Studentenportal…",
   "main": "app.js",
   "author": "Sebastian Pekarek <mail@sebbo.net>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sebbo2002/fhws-grades-push.git"
+  },
   "license": "MIT",
   "dependencies": {
     "async": "^1.5.2",
