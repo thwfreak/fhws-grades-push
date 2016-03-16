@@ -2,9 +2,9 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 
-Small script no get notified when there're new grades available on the 
+Small script to get notified when there're new grades available on the 
 "[FHWS Studenten Portal](https://studentenportal.fhws.de/grades)". Uses 
-ugly HTML scarping and there's almost no error handling, deal with it. 
+ugly HTML scraping and there's almost no error handling, deal with it. 
 Very untested. Such wow.
 
 ### Installation
