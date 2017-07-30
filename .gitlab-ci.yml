@@ -1,10 +1,29 @@
+stages:
+  - build
+  - deploy
+
 build_image:
-  image: docker:git
-  services:
-  - docker:dind
+  stage: build
+  tags:
+    - matt.sebbo.net
+    - ssh
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN docker.sebbo.net
-    - docker build -t docker.sebbo.net/sebbo2002/fhws-grades-push .
+    - docker pull docker.sebbo.net/sebbo2002/fhws-grades-push
+    - docker build -t docker.sebbo.net/sebbo2002/fhws-grades-push --cache-from docker.sebbo.net/sebbo2002/fhws-grades-push .
     - docker push docker.sebbo.net/sebbo2002/fhws-grades-push
+  only:
+    - master
+
+deploy_develop:
+  stage: deploy
+  tags:
+    - matt.sebbo.net
+    - ssh
+  environment:
+    name: production
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN docker.sebbo.net
+    - docker pull docker.sebbo.net/sebbo2002/fhws-grades-push
   only:
     - master
