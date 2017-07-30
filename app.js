@@ -97,6 +97,13 @@ async.waterfall([
 				}
 			}
 
+			if(Object.keys(old).length < Object.keys(now).length) {
+				cb(new Error(
+					'Oops, seems like they lost some grades… (were ' + Object.keys(old).length + ', ' +
+					'but now only ' + Object.keys(now).length + ' found)'
+				));
+			}
+
 			cb(null, old, now);
 		});
 	},
