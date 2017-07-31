@@ -2,15 +2,27 @@ stages:
   - build
   - deploy
 
-build_image:
+build_image_private:
   stage: build
   tags:
     - matt.sebbo.net
     - ssh
   script:
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN docker.sebbo.net
+    - docker login -u "gitlab-ci-token" -p "${CI_BUILD_TOKEN}" docker.sebbo.net
     - docker build -t docker.sebbo.net/fhws/grades-push .
     - docker push docker.sebbo.net/fhws/grades-push
+  only:
+    - master
+
+build_image_public:
+  stage: build
+  tags:
+    - matt.sebbo.net
+    - ssh
+  script:
+    - docker login -u "${DOCKERHUB_USERNAME}" -p "${DOCKERHUB_PASSWORD}"
+    - docker build -t sebbo2002/fhws-grade-push .
+    - docker push sebbo2002/fhws-grade-push
   only:
     - master
 
@@ -22,7 +34,16 @@ deploy_develop:
   environment:
     name: production
   script:
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN docker.sebbo.net
+    - docker login -u "gitlab-ci-token" -p "${CI_BUILD_TOKEN}" docker.sebbo.net
     - docker pull docker.sebbo.net/fhws/grades-push
+  only:
+    - master
+
+push_github:
+  tags:
+    - matt.sebbo.net
+    - ssh
+  script:
+    - git push "https://${GITHUB_AUTH}@github.com/sebbo2002/fhws-grades-push.git" --all
   only:
     - master
