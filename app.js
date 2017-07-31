@@ -97,7 +97,7 @@ async.waterfall([
 				}
 			}
 
-			if(Object.keys(old).length < Object.keys(now).length) {
+			if(Object.keys(now).length < Object.keys(old).length) {
 				cb(new Error(
 					'Oops, seems like they lost some grades… (were ' + Object.keys(old).length + ', ' +
 					'but now only ' + Object.keys(now).length + ' found)'
