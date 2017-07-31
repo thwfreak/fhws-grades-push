@@ -9,7 +9,6 @@ build_image:
     - ssh
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN docker.sebbo.net
-    - docker pull docker.sebbo.net/fhws/grades-push
     - docker build -t docker.sebbo.net/fhws/grades-push .
     - docker push docker.sebbo.net/fhws/grades-push
   only:
