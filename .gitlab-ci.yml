@@ -2,7 +2,7 @@ stages:
   - build
   - deploy
 
-build_image_private:
+build_image:
   stage: build
   tags:
     - matt.sebbo.net
@@ -14,7 +14,7 @@ build_image_private:
   only:
     - master
 
-deploy_develop:
+deploy:
   stage: deploy
   tags:
     - matt.sebbo.net
@@ -27,7 +27,7 @@ deploy_develop:
   only:
     - master
 
-deploy_image_public:
+publish_dockerhub:
   stage: deploy
   tags:
     - matt.sebbo.net
@@ -39,7 +39,7 @@ deploy_image_public:
   only:
     - master
 
-deploy_repository_github:
+publish_github:
   stage: deploy
   tags:
     - matt.sebbo.net

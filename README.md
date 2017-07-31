@@ -9,6 +9,8 @@ Very untested. Such wow.
 
 ### Installation
 
+#### Directly
+
 You'll need [node.js](https://nodejs.org/en/) to run this.
 
 ```bash
@@ -18,6 +20,16 @@ npm install
 ```
 
 I use crontab to run this script regularly.
+
+
+#### Docker
+
+You can also use the docker container to run this script:
+
+```bash
+docker pull sebbo2002/fhws-grade-push
+```
+
 
 ### Configuration
 
