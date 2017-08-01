@@ -42,6 +42,6 @@ trigger_dockerhub:
     - matt.sebbo.net
     - ssh
   script:
-    - curl -q "https://registry.hub.docker.com/u/sebbo2002/fhws-grades-push/trigger/4a89a86f-5cdc-4e9f-a30d-811e474a75f7/"
+    - curl -X "POST" "https://registry.hub.docker.com/u/sebbo2002/fhws-grades-push/trigger/4a89a86f-5cdc-4e9f-a30d-811e474a75f7/"
   only:
     - master
