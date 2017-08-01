@@ -14,6 +14,15 @@ build_image:
   only:
     - master
 
+publish_github:
+  stage: deploy
+  tags:
+    - matt.sebbo.net
+    - ssh
+  script:
+    - git push "https://${GITHUB_AUTH}@github.com/sebbo2002/fhws-grades-push.git" --all
+    - git push "https://${GITHUB_AUTH}@github.com/sebbo2002/fhws-grades-push.git" --tags
+
 deploy:
   stage: deploy
   tags:
@@ -27,24 +36,12 @@ deploy:
   only:
     - master
 
-publish_dockerhub:
+trigger_dockerhub:
   stage: deploy
   tags:
     - matt.sebbo.net
     - ssh
   script:
-    - docker login -u "${DOCKERHUB_USERNAME}" -p "${DOCKERHUB_PASSWORD}"
-    - docker build -t sebbo2002/fhws-grade-push .
-    - docker push sebbo2002/fhws-grade-push
-  only:
-    - master
-
-publish_github:
-  stage: deploy
-  tags:
-    - matt.sebbo.net
-    - ssh
-  script:
-    - git push "https://${GITHUB_AUTH}@github.com/sebbo2002/fhws-grades-push.git" --all
+    - curl -q "https://registry.hub.docker.com/u/sebbo2002/fhws-grades-push/trigger/4a89a86f-5cdc-4e9f-a30d-811e474a75f7/"
   only:
     - master
