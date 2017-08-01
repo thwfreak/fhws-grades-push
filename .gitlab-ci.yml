@@ -15,7 +15,7 @@ build_image:
     - master
 
 publish_github:
-  stage: deploy
+  stage: build
   tags:
     - matt.sebbo.net
     - ssh
