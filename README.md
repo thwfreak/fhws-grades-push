@@ -1,6 +1,7 @@
 # FHWS Grades Push
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
+[![Status](https://git-badges.sebbo.net/35/master/build)](https://git.sebbo.net/fhws/grades-push/pipelines)
 
 Small script to get notified when there're new grades available on the 
 "[FHWS Studenten Portal](https://studentenportal.fhws.de/grades)". Uses 
