@@ -28,7 +28,8 @@ I use crontab to run this script regularly.
 You can also use the docker container to run this script:
 
 ```bash
-docker pull sebbo2002/fhws-grade-push
+docker build -t fhws-grades-push .
+docker run -t -e FHWS_USERNAME=k***** -e FHWS_PASSWORD=***** -e PUSHBULLET_ACCESS_TOKEN=***** -v /opt/fhws-grades-push/result.json:/app/result.json fhws-grades-push
 ```
 
 
