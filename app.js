@@ -13,11 +13,8 @@ async.waterfall([
 		if (!process.env.FHWS_PASSWORD) {
 			return cb(new Error('Unable to authenticate: FHWS_PASSWORD empty'));
 		}
-		if (!process.env.PUSHOVER_TOKEN) {
-			return cb(new Error('Unable to start: PUSHOVER_TOKEN empty'));
-		}
-		if (!process.env.PUSHOVER_USER) {
-			return cb(new Error('Unable to start: PUSHOVER_USER empty'));
+		if (!process.env.PUSHBULLET_ACCESS_TOKEN) {
+			return cb(new Error('Unable to start: PUSHBULLET_ACCESS_TOKEN empty'));
 		}
 
 		request.post({
@@ -40,6 +37,21 @@ async.waterfall([
 			}
 		});
 	},
+	// function switchToBachelor(jar, cb) {
+	// 	request.post({
+	// 		uri: "https://studentenportal.fhws.de/home/swap",
+	// 		form: {
+	// 			offset: '0'
+	// 		},
+	// 		jar: jar
+	// 	}, function (err, response, body) {
+	// 		if (err) {
+	// 			return cb(err);
+	// 		}
+
+	// 		cb(null, jar);
+	// 	});
+	// },
 	function getGradesHTML (jar, cb) {
 		request.get({
 			uri: 'https://studentenportal.fhws.de/grades',
@@ -140,25 +152,27 @@ async.waterfall([
 		cb(null, notifications);
 	},
 	function sendNotifications (notifications, cb) {
-		var Pushover = require('node-pushover-client'),
-			pushNotification;
+		var PushBullet = require('pushbullet');
+		var pusher = new PushBullet(process.env.PUSHBULLET_ACCESS_TOKEN);
 
 		if (notifications.length === 0) {
 			return cb();
 		}
 
-		pushNotification = new Pushover({
-			token: process.env.PUSHOVER_TOKEN,
-			user: process.env.PUSHOVER_USER
-		});
+		pusher.me(function (err, me) {
+			if(err) {
+				cb(err);
+			}
 
-		notifications.forEach(function (message) {
-			pushNotification.send({
-				title: '🎓 FHWS Grades',
-				message: message,
-				url: 'https://studentenportal.fhws.de/grades',
-				urlTitle: 'Portal',
-				sound: 'magic'
+			notifications.forEach(function (message) {
+				pusher.link(
+					me.email,
+					'🎓 FHWS Grades', 
+					'https://studentenportal.fhws.de/', 
+					message, 
+					function(error, response) {
+						console.log(response);
+					});
 			});
 		});
 	}
